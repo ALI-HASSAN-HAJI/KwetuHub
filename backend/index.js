@@ -5,6 +5,7 @@ import exampleRoute from './routes/exampleRoute.js';
 import practiceRoute from './routes/practiceRoute.js';
 import studentRoutes from './routes/studentRoutes.js';
 import categoryRoute from './routes/categoryRoute.js';
+import arsenalRoutes from './routes/arsenalRoutes.js';  
 
 
 const app = express();
@@ -21,6 +22,7 @@ app.use('/lesson', exampleRoute);
 app.use('/practice', practiceRoute);
 app.use('/student', studentRoutes);
 app.use('/category', categoryRoute);
+app.use('/arsenal', arsenalRoutes);
 
 app.listen(PORT, () => {
   console.log("Server listening on PORT: "+PORT)
