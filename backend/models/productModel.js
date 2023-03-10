@@ -24,9 +24,8 @@ const productSchema = new Schema({
   },
   category: [String],
     
-  discount_percentage: {
+  discountPercentage: {
     type: Number,
-    required: true
   }
 });
 export default model("productModel", productSchema);

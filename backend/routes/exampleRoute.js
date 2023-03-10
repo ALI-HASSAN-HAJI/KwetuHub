@@ -1,7 +1,40 @@
 import express from 'express';
+import multer from 'multer';
+import fs from 'fs';
 import exampleModel from '../models/exampleModel.js';
 
 const router = express.Router();
+
+// How to upload a picture;
+const upload = multer({ dest: 'uploads/'});
+const uploadExampleImages = upload.fields([
+  {name: 'image', maxCount: 1}
+])
+
+router.post('/upload/pic', uploadExampleImages, (req, res) => {
+  console.log(req.files.image[0])
+  let img = req.files.image[0]
+  let fileType = (img.mimetype).split('/')[1];
+  let newFileName = img.filename + '.' + fileType;
+  fs.rename(`./uploads/${img.filename}`, `./uploads/${newFileName}`, () => {
+    console.log("File renamed Successfully!!!!!");
+  });
+  res.send('Its Oky')
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/home', (req, res) => {
   res.send('This is a home page:')
