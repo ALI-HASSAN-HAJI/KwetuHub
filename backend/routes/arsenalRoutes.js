@@ -1,8 +1,30 @@
 import express from 'express';
+import multer from 'multer';
+import fs from 'fs';
 import arsenalModel from '../models/arsenalModel.js';
 
 
 const router = express.Router(); 
+
+
+// How to upload the Picture of the Club;
+const upload = multer({ dest: 'uploads/'});
+const uploadArsenalImages = upload.fields([
+  {name: 'image', maxCount: 1}
+])
+
+router.post('/upload/picture', uploadArsenalImages, (req, res) => {
+  console.log(req.files.image[0]);
+  let img = req.files.image[0];
+  let fileType = (img.mimetype).split('/')[1];
+  let newFileName = img.filename + '.' + fileType;
+  fs.rename(`./uploads/${img.filename}`, `./uploads/${newFileName}`, () => {
+    console.log("The file is successfully renamed, Congratulation!!!");
+  });
+
+  res.send("It's fully functioning well!!!!!");
+})
+
 
 // Example showing Arsenal Player by getting, Creating, updating and also deleting;
 
