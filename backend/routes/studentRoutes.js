@@ -69,6 +69,8 @@ router.post('/update/:id', async (req, res) => {
   res.send(result)
 });
 
+
+// Deleting a student;
 router.post('/delete/:id', async (req, res) => {
   let id = req.params.id;
   await studentModel.deleteOne({_id: id});

@@ -12,6 +12,7 @@ import productRoutes from './routes/productRoutes.js';
 const app = express();
 const PORT = 4000;
 app.use(bodyParser.json())
+app.use(express.static('uploads')); // exposes this folder so that we can access the images from the front end
 const mongoUri = 'mongodb+srv://Ali-Haji:'+ encodeURIComponent('Haji@1234') +'@cluster0.7cpeakk.mongodb.net/?retryWrites=true&w=majority'
 
 mongoose

@@ -8,7 +8,8 @@ const router = express.Router();
 // How to upload a picture;
 const upload = multer({ dest: 'uploads/'});
 const uploadExampleImages = upload.fields([
-  {name: 'image', maxCount: 1}
+  {name: 'image', maxCount: 1},
+  {name: 'images', maxCount: 6}
 ])
 
 router.post('/upload/pic', uploadExampleImages, (req, res) => {
@@ -19,7 +20,19 @@ router.post('/upload/pic', uploadExampleImages, (req, res) => {
   fs.rename(`./uploads/${img.filename}`, `./uploads/${newFileName}`, () => {
     console.log("File renamed Successfully!!!!!");
   });
-  res.send('Its Oky')
+
+  // Uploading multiple pictures;
+  let multipleImages = req.files.images
+  let imageArray = multipleImages.map((image) => {
+    let mFileType = (image.mimetype).split('/')[1];
+    let mNewFileName = image.filename + '.' + mFileType;
+    fs.rename(`./uploads/${image.filename}`, `./uploads/${mNewFileName}`, () => {
+      console.log("File renamed successfully!!")
+    });
+    return newFileName;
+  });
+  console.log(imageArray)
+  res.send('All files uploaded successfully!!!!');
 })
 
 
