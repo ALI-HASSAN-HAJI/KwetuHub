@@ -64,15 +64,16 @@ router.post('/create', uploadProductImages, async (req, res) => {
 
 
 // Updating Products apart from image and images;
-router.post('/update/:id', async (res, req) => {
-  const product = await productModel.findOne({_id: id.params.id});
-  product.name = req.body.name;
-  product.price = req.body.price;
-  product.currency = req.body.currency;
-  product.quantity = req.body.quantity;
-  product.category = req.body.category;
-  const result = await product.save();
-  res.send(result);
+router.post('/update/:id', async (req, res) => {
+  console.log(req.body);
+  // const product = await productModel.findOne({_id: req.params.id});
+  // product.name = req.body.name;
+  // product.price = req.body.price;
+  // product.currency = req.body.currency;
+  // product.quantity = req.body.quantity;
+  // product.category = req.body.category;
+  // const result = await product.save() 
+  // res.send(result)
 })
 
 // Deleting product;

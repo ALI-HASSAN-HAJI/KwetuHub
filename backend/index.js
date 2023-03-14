@@ -7,6 +7,7 @@ import studentRoutes from './routes/studentRoutes.js';
 import categoryRoute from './routes/categoryRoute.js';
 import arsenalRoutes from './routes/arsenalRoutes.js'; 
 import productRoutes from './routes/productRoutes.js'; 
+import userAuth from './routes/userAuth.js';
 
 
 const app = express();
@@ -26,6 +27,7 @@ app.use('/student', studentRoutes);
 app.use('/category', categoryRoute);
 app.use('/arsenal', arsenalRoutes);
 app.use('/product', productRoutes);
+app.use('/', userAuth);
 
 app.listen(PORT, () => {
   console.log("Server listening on PORT: "+PORT)
